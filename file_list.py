@@ -1,27 +1,3 @@
-"""
-We want to make a python program that will take all the files that are of chosen extensions and put them in 1 text file that will be in the same directory as the program.
-
-Example:
-we have a directory with 2 files and folder:
-file1.txt
-file2.txt
-folder1: file3.txt
-
-we want to take all the files that are of .txt & .json extension and put them in 1 text file that will be in the same directory as the program
-that will look like this:
-
-[strucutre of all the files and folders in the directory]
-
-file1.txt:
-[content of file1.txt]
-file2.txt:
-[content of file2.txt]
-file3.txt:
-[content of file3.txt]
-
-* note that we will add also a ignore list that will ignore the files & folders that are in the ignore list
-"""
-
 import os
 import sys
 
