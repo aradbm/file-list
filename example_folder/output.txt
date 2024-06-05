@@ -1,0 +1,16 @@
+Project Structure:
+test folder/
+    file1.txt
+    file2.txt
+    folder1/
+        file3.txt
+
+D:\Downloads\test folder\file1.txt:
+description1
+
+D:\Downloads\test folder\file2.txt:
+description2
+
+D:\Downloads\test folder\folder1\file3.txt:
+description3
+
