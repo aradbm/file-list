@@ -1,5 +1,5 @@
 import os
-import sys
+import datetime
 
 
 def get_files(directory, extensions, ignore_list):
@@ -15,6 +15,10 @@ def get_files(directory, extensions, ignore_list):
 
 def write_project_structure(directory, output_file, ignore_list):
     for root, dirs, files in os.walk(directory):
+        # Exclude hidden directories and files
+        dirs[:] = [d for d in dirs if not d.startswith(".")]
+        files = [f for f in files if not f.startswith(".")]
+
         level = root.replace(directory, "").count(os.sep)
         indent = " " * 4 * level
         output_file.write(f"{indent}{os.path.basename(root)}/\n")
@@ -26,11 +30,15 @@ def write_project_structure(directory, output_file, ignore_list):
 
 if __name__ == "__main__":
     directory = os.path.dirname(os.path.realpath(__file__))
-    extensions = [".txt", ".json"]
-    ignore_list = ["pytext.py", "output.txt"]
+    extensions = [".txt", ".py"]
+    ignore_list = ["file_list.py", "output.txt"]
     files = get_files(directory, extensions, ignore_list)
 
-    with open("output.txt", "w") as output_file:
+    # Get the current timestamp
+    timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+    output_filename = f"output_{timestamp}.txt"
+
+    with open(output_filename, "w") as output_file:
         output_file.write("Project Structure:\n")
         write_project_structure(directory, output_file, ignore_list)
         output_file.write("\n")
