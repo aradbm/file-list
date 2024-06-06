@@ -21,20 +21,31 @@ For ChatGPT and Claude.
 
 ## Example output:
 
-    ```txt
-    Project Structure:
-    test folder/
-        file1.txt
-        file2.txt
-        folder1/
-            file3.txt
-
-    D:\Downloads\test folder\file1.txt:
-    description1
-
-    D:\Downloads\test folder\file2.txt:
-    description2
-
-    D:\Downloads\test folder\folder1\file3.txt:
-    description3
-    ```
+ ```
+ Project Structure:
+   file list/
+       output_20240606_025408.txt
+       README.md
+       example_folder/
+           file1.txt
+           file2.txt
+           python_file.py
+           folder1/
+               file3.txt
+   
+   D:\Downloads\file list\example_folder\file1.txt:
+   description1
+   
+   D:\Downloads\file list\example_folder\file2.txt:
+   description2
+   
+   D:\Downloads\file list\example_folder\python_file.py:
+   ##Example python file
+   import os
+   
+   print("Hello, World!")
+   
+   
+   D:\Downloads\file list\example_folder\folder1\file3.txt:
+   description3
+ ```
