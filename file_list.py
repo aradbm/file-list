@@ -5,6 +5,15 @@ import datetime
 def get_files(directory, extensions, ignore_list):
     files = []
     for root, dirs, file_list in os.walk(directory):
+        # Exclude hidden directories and files
+        dirs[:] = [d for d in dirs if not d.startswith(".")]
+        file_list = [f for f in file_list if not f.startswith(".")]
+
+        # Check if the current directory is in the ignore list
+        if os.path.basename(root) in ignore_list:
+            dirs[:] = []  # Clear the dirs list to skip subdirectories
+            continue
+
         for file in file_list:
             if file not in ignore_list:
                 for extension in extensions:
@@ -19,6 +28,11 @@ def write_project_structure(directory, output_file, ignore_list):
         dirs[:] = [d for d in dirs if not d.startswith(".")]
         files = [f for f in files if not f.startswith(".")]
 
+        # Check if the current directory is in the ignore list
+        if os.path.basename(root) in ignore_list:
+            dirs[:] = []  # Clear the dirs list to skip subdirectories
+            continue
+
         level = root.replace(directory, "").count(os.sep)
         indent = " " * 4 * level
         output_file.write(f"{indent}{os.path.basename(root)}/\n")
@@ -30,8 +44,8 @@ def write_project_structure(directory, output_file, ignore_list):
 
 if __name__ == "__main__":
     directory = os.path.dirname(os.path.realpath(__file__))
-    extensions = [".txt", ".py"]
-    ignore_list = ["file_list.py", "output.txt"]
+    extensions = [".js", ".yml"]
+    ignore_list = ["node_modules", "venv", "output.txt"]
     files = get_files(directory, extensions, ignore_list)
 
     # Get the current timestamp
